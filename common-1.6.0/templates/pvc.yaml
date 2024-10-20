@@ -1,0 +1,19 @@
+{{- if .Values.storage.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+  name: data-{{ include "common.fullname" $ }}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  {{- with $.Values.storage.resources }}
+  resources: {{- toYaml . | nindent 4 }}
+  {{- end }}
+  storageClassName: {{ .Values.storage.storageClass }}
+  volumeMode: Filesystem
+status:
+  accessModes:
+  - ReadWriteOnce
+{{- end -}}

@@ -1,0 +1,86 @@
+fullnameOverride: ""
+
+replicas: 1
+
+strategy: Recreate
+
+image:
+  repository: ""
+  tag: "" 
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+extraLabels: {}
+# extraLabels:
+#   # bt-mysql: "true"
+
+storage:
+  enabled: false
+
+# storage:
+#   enabled: true
+#   storageClass: vsan-storage
+#   mountPath: /var/lib/postgresql/data
+#   subPath: data
+#   resources:
+#     requests:
+#       storage: 10Gi
+
+initContainers: []
+
+service: {}
+readinessProbe: {}
+livenessProbe: {}
+
+configmaps: []
+# configmaps:
+#   - name: wso2is-cm
+configmapMounts: []
+# configmapMounts:
+#   - name: wso2is-cm
+#     path: /app/repository/conf/deployment.toml
+#     subPath: deployment.toml
+
+secrets: []
+secretMounts: []
+
+ports: []
+# ports:
+#   - name: https
+#     containerPort: 9443
+#   - name: http
+#     containerPort: 9763
+
+command: []
+
+ingress:
+  enabled: false
+  # tls:
+  #   - hosts:
+  #       - wso2-is-beta.bt.systems
+  #     secretName: bt-cert
+  # hosts:
+  #   - host: wso2-is-beta.bt.systems
+  #     paths:
+  #       - path: /
+  #         pathType: Prefix
+  #         service:
+  #           name: wso2-is7
+  #           port: 9763
+
+extraEnvs: []
+envFrom: []
+resources:
+  limits:
+    cpu: 1000m
+    memory: 4Gi
+  requests:
+    cpu: 500m
+    memory: 2Gi
+tolerations: []
+securityContext: {}
+podSecurityContext: {}
+podAnnotations: {}
+nodeSelector: {}
+affinity: {}

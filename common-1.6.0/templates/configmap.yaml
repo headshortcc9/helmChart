@@ -1,0 +1,12 @@
+{{- if .Values.configmaps }}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ include "common.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  {{- range $path, $_ := ($.Files.Glob "files/configmap/txt/*") }}
+  {{ $path | base }}: |{{- $.Files.Get $path | nindent 4 }}
+  {{- end }}
+{{- end -}}
